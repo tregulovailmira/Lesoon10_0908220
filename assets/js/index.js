@@ -72,9 +72,17 @@ function ArrayMethods() {
     this.pop = function () {
         
         let lastElement = this[this.length-1];
+        delete this[this.length-1]; 
         this.length = this.length - 1;
-        delete this[this.length]; 
         return lastElement;
+    }
+
+    this.push = function () {
+    for (let i = 0; i < arguments.length; i++) {
+        this[this.length] = arguments[i];
+        this.length++;
+    }
+    return this.length;
     }
 }
 
@@ -83,6 +91,7 @@ MyArray.prototype = new ArrayMethods();
 const myArr = new MyArray(1, '22', 'fffff', 44, 4444);
 console.log(myArr);
 console.log(myArr.pop());
+console.log(myArr.push(2,2,2,2));
 console.log(myArr);
 
 // let input = prompt('Choose the food: 1 - Pizza, 2 - French fries, 3 - Burger')
